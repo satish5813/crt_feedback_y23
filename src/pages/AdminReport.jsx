@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import BrandBar from '../components/BrandBar.jsx';
-import { getJSONAdmin, excelUrl, clearAdminKey } from '../api.js';
+import { getJSONAdmin, excelUrl, pdfUrl, wordUrl, clearAdminKey } from '../api.js';
 import { heat, heatBadPct } from '../constants.js';
 
 const fmt = (v) => (v === null || v === undefined ? '—' : v);
@@ -120,8 +120,9 @@ export default function AdminReport() {
         <BrandBar compact />
         <div className="flex gap-2 flex-wrap no-print">
           <button onClick={load} className="px-4 py-2.5 rounded-xl bg-white border border-stone-300 text-sm font-bold hover:border-klred">&#8635; Refresh</button>
+          <a href={pdfUrl()} className="px-4 py-2.5 rounded-xl bg-klred text-white text-sm font-bold">&#8681; PDF Report</a>
+          <a href={wordUrl()} className="px-4 py-2.5 rounded-xl bg-sky-700 text-white text-sm font-bold">&#8681; Word</a>
           <a href={excelUrl()} className="px-4 py-2.5 rounded-xl bg-emerald-700 text-white text-sm font-bold">&#8681; Excel</a>
-          <button onClick={() => window.print()} className="px-4 py-2.5 rounded-xl bg-klred text-white text-sm font-bold">&#128424; Print / PDF</button>
           <button onClick={() => { clearAdminKey(); window.location.reload(); }} className="px-4 py-2.5 rounded-xl bg-white border border-stone-300 text-sm font-bold text-neutral-500">Logout</button>
         </div>
       </div>

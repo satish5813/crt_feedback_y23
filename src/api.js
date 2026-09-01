@@ -33,3 +33,5 @@ export async function getJSONAdmin(path) {
 }
 
 export const excelUrl = () => api('/api/export/excel?key=' + encodeURIComponent(getAdminKey()));
+export const pdfUrl = () => api('/api/export/pdf?key=' + encodeURIComponent(getAdminKey()));
+export const wordUrl = () => api('/api/export/word?key=' + encodeURIComponent(getAdminKey()));
