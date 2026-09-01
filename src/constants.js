@@ -6,6 +6,9 @@ export const BRANCHES_FALLBACK = [
 
 export const WEAK_THRESHOLD = 4;
 
+// External training vendors
+export const VENDORS = ['COIGN', 'GradsKey', 'Rsequence', 'Smart Interviews', 'Other'];
+
 export const SECTIONS = {
   skills: [
     { key: 'aptitude', label: 'Aptitude' },

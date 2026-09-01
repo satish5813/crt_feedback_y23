@@ -3,7 +3,7 @@ import BrandBar from '../components/BrandBar.jsx';
 import RatingChips from '../components/RatingChips.jsx';
 import Seg from '../components/Seg.jsx';
 import { api, getJSON } from '../api.js';
-import { BRANCHES_FALLBACK, SECTIONS } from '../constants.js';
+import { BRANCHES_FALLBACK, SECTIONS, VENDORS } from '../constants.js';
 
 const STEPS = [
   { id: 'student',  title: 'Student Details',     icon: '\u{1F464}' },
@@ -25,6 +25,7 @@ export default function FeedbackForm() {
   const [ratings, setRatings] = useState({});
   const [segs, setSegs] = useState({});
   const [vendorName, setVendorName] = useState('');
+  const [vendorOther, setVendorOther] = useState('');
   const [coachName, setCoachName] = useState('');
   const [texts, setTexts] = useState({ trainingFeedback: '', overallFeedback: '', failReason: '' });
   const [errors, setErrors] = useState([]);
@@ -71,6 +72,10 @@ export default function FeedbackForm() {
         break;
       case 'training':
         if (!segs.trainingSource) errs.push('Select how training was received');
+        if ((segs.trainingSource === 'External Vendor' || segs.trainingSource === 'Both') && !vendorName) {
+          errs.push('Select the external vendor name');
+        }
+        if (vendorName === 'Other' && !vendorOther.trim()) errs.push('Enter the vendor name');
         needRatings(SECTIONS.coach.map((x) => x.key));
         break;
       case 'feedback':
@@ -103,7 +108,9 @@ export default function FeedbackForm() {
     if (!validateStep(step)) return;
     const payload = {
       regNo: regNo.trim(), name: name.trim(), branch,
-      ...ratings, ...segs, vendorName, coachName, ...texts,
+      ...ratings, ...segs,
+      vendorName: vendorName === 'Other' ? vendorOther.trim() : vendorName,
+      coachName, ...texts,
     };
     setSubmitting(true);
     try {
@@ -298,9 +305,18 @@ export default function FeedbackForm() {
             {showVendor && (
               <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 mt-3">
                 <label className="block mb-3">
-                  <span className="block text-[13.5px] font-semibold mb-1.5">Vendor Name</span>
-                  <input className={inputCls} value={vendorName} onChange={(e) => setVendorName(e.target.value)} placeholder="External vendor / company name" />
+                  <span className="block text-[13.5px] font-semibold mb-1.5">Vendor Name <em className="not-italic text-klred">*</em></span>
+                  <select className={inputCls} value={vendorName} onChange={(e) => setVendorName(e.target.value)}>
+                    <option value="">— Select the vendor —</option>
+                    {VENDORS.map((v) => <option key={v} value={v}>{v}</option>)}
+                  </select>
                 </label>
+                {vendorName === 'Other' && (
+                  <label className="block mb-3">
+                    <span className="block text-[13.5px] font-semibold mb-1.5">Vendor Name (type it) <em className="not-italic text-klred">*</em></span>
+                    <input className={inputCls} value={vendorOther} onChange={(e) => setVendorOther(e.target.value)} placeholder="External vendor / company name" />
+                  </label>
+                )}
                 <p className="text-[12.5px] text-neutral-500 mb-1">Rate the external vendor training:</p>
                 {SECTIONS.vendor.map((s) => (
                   <RatingChips key={s.key} label={s.label} value={ratings[s.key]} onChange={setRating(s.key)} />
