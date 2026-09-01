@@ -40,7 +40,7 @@ export default function AdminLogin({ onOk }) {
           className="w-full px-4 py-3 border-[1.5px] border-stone-200 rounded-xl bg-stone-50 focus:bg-white focus:border-klred focus:outline-none mb-3"
         />
         {err && <div className="text-[13px] text-klred mb-3">{err}</div>}
-        <button disabled={busy} className="w-full py-3 font-bold text-white rounded-xl bg-gradient-to-r from-kldark to-klred shadow-md shadow-red-200 disabled:opacity-60">
+        <button disabled={busy} className="w-full py-3 font-bold text-white rounded-xl bg-gradient-to-r from-kldark to-klred shadow-md shadow-klred/25 disabled:opacity-60">
           {busy ? 'Checking…' : 'Sign In'}
         </button>
       </form>

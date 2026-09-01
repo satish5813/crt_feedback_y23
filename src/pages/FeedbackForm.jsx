@@ -146,7 +146,7 @@ export default function FeedbackForm() {
       <BrandBar />
 
       {/* Hero + progress */}
-      <header className="rounded-2xl mt-3 mb-4 p-5 sm:p-6 text-white bg-gradient-to-br from-kldeep via-kldark to-klred shadow-lg shadow-red-900/25">
+      <header className="rounded-2xl mt-3 mb-4 p-5 sm:p-6 text-white bg-gradient-to-br from-kldeep via-kldark to-klred shadow-lg shadow-kldeep/30">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <div>
             <span className="inline-block text-[10.5px] tracking-[0.15em] uppercase bg-white/15 border border-white/25 px-3 py-1 rounded-full mb-2">
@@ -181,7 +181,7 @@ export default function FeedbackForm() {
                 >
                   <span className={`w-9 h-9 rounded-full flex items-center justify-center text-[13px] font-bold border-2 transition-all
                     ${state === 'done' ? 'bg-emerald-500 border-emerald-500 text-white'
-                    : state === 'now' ? 'bg-klred border-klred text-white ring-4 ring-red-100 scale-110'
+                    : state === 'now' ? 'bg-klred border-klred text-white ring-4 ring-klred/15 scale-110'
                     : state === 'open' ? 'bg-white border-klred/40 text-klred'
                     : 'bg-stone-50 border-stone-200 text-stone-400'}`}>
                     {state === 'done' ? '✓' : i + 1}
@@ -356,7 +356,7 @@ export default function FeedbackForm() {
           )}
           {step < STEPS.length - 1 ? (
             <button type="button" onClick={goNext}
-              className="flex-1 py-3.5 rounded-xl text-[15px] font-bold text-white bg-gradient-to-r from-kldark to-klred shadow-lg shadow-red-200 active:scale-[0.99] transition-all">
+              className="flex-1 py-3.5 rounded-xl text-[15px] font-bold text-white bg-gradient-to-r from-kldark to-klred shadow-lg shadow-klred/25 active:scale-[0.99] transition-all">
               Next: {STEPS[step + 1].title} &rarr;
             </button>
           ) : (

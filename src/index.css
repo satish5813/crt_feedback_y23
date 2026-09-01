@@ -1,17 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-  /* Maroon brand palette */
-  --color-klred: #8e2434;   /* maroon primary */
-  --color-kldark: #6b1a27;  /* deep maroon */
-  --color-kldeep: #45111b;  /* darkest maroon */
-  --color-klgold: #d9a851;  /* muted warm gold */
+  /* Professional navy brand palette (token names kept for compatibility) */
+  --color-klred: #2352a3;   /* primary — dignified royal navy */
+  --color-kldark: #163a78;  /* deep navy */
+  --color-kldeep: #0c2450;  /* darkest navy */
+  --color-klgold: #d9a851;  /* muted warm gold accent */
 
-  /* Warm the neutral scale (used for backgrounds, borders, inputs everywhere) */
-  --color-stone-50: #faf6f0;
-  --color-stone-100: #f4eee5;
-  --color-stone-200: #e8ddcf;
-  --color-stone-300: #d6c7b3;
+  /* Cool professional neutral scale (backgrounds, borders, inputs) */
+  --color-stone-50: #f8fafc;
+  --color-stone-100: #f1f5f9;
+  --color-stone-200: #e2e8f0;
+  --color-stone-300: #cbd5e1;
 
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, "Segoe UI", sans-serif;
   --font-display: "Sora", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
