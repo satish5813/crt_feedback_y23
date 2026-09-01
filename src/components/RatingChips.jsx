@@ -36,7 +36,7 @@ export default function RatingChips({ label, value, onChange, required, invalid,
         )}
         {invalid && <span className="text-[11px] font-bold text-red-500">— please select</span>}
       </div>
-      <div className="flex flex-wrap gap-1.5">
+      <div className="grid grid-cols-5 sm:grid-cols-10 gap-1.5">
         {Array.from({ length: 10 }, (_, i) => i + 1).map((n) => {
           const filled = value && n <= value;
           const b = bandOf(n, kind);
@@ -45,7 +45,7 @@ export default function RatingChips({ label, value, onChange, required, invalid,
               key={n}
               type="button"
               onClick={() => onChange(n)}
-              className={`h-10 min-w-9 flex-1 basis-[8%] rounded-lg border-[1.5px] text-sm font-bold transition-all duration-150
+              className={`h-11 sm:h-10 w-full rounded-lg border-[1.5px] text-sm font-bold transition-all duration-150
                 ${filled ? `${FILL[b]} shadow-md ${n === value ? 'scale-110 ring-2 ring-offset-1 ring-neutral-300' : ''}` : `${invalid ? 'border-red-300 ' : ''}${TINT[b]}`}`}
             >
               {n}

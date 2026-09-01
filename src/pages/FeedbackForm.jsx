@@ -50,7 +50,7 @@ export default function FeedbackForm() {
     const needRatings = (keys) => keys.forEach((k) => { if (!ratings[k]) missing.add(k); });
     switch (STEPS[i].id) {
       case 'student':
-        if (!regNo.trim()) errs.push('Enter your register number');
+        if (!/^\d{6,15}$/.test(regNo.trim())) errs.push('Register number must be numbers only (6-15 digits)');
         if (!name.trim()) errs.push('Enter your full name');
         if (!branch) errs.push('Select your branch');
         break;
@@ -107,16 +107,13 @@ export default function FeedbackForm() {
     };
     setSubmitting(true);
     try {
-      let res = await fetch(api('/api/feedback'), {
+      const res = await fetch(api('/api/feedback'), {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
       });
       if (res.status === 409) {
-        if (window.confirm('Feedback was already submitted for this register number. Replace the previous submission?')) {
-          res = await fetch(api('/api/feedback'), {
-            method: 'POST', headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ ...payload, allowResubmit: true }),
-          });
-        } else { setSubmitting(false); return; }
+        setErrors(['Feedback has already been submitted for this register number. Only one submission is allowed per student.']);
+        setSubmitting(false);
+        return;
       }
       const data = await res.json();
       if (data.ok) { setDone(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }
@@ -218,8 +215,12 @@ export default function FeedbackForm() {
         {STEPS[step].id === 'student' && (
           <div className="space-y-4">
             <label className="block">
-              <span className="block text-[13.5px] font-semibold mb-1.5">Register Number <em className="not-italic text-klred">*</em></span>
-              <input className={inputCls} value={regNo} onChange={(e) => setRegNo(e.target.value)} placeholder="e.g. 22B81A0501" />
+              <span className="block text-[13.5px] font-semibold mb-1.5">Register Number <em className="not-italic text-klred">*</em> <span className="text-[11px] font-medium text-neutral-400">(numbers only)</span></span>
+              <input
+                className={inputCls} value={regNo} inputMode="numeric" autoComplete="off" maxLength={15}
+                onChange={(e) => setRegNo(e.target.value.replace(/\D/g, '').slice(0, 15))}
+                placeholder="e.g. 2300031234"
+              />
             </label>
             <label className="block">
               <span className="block text-[13.5px] font-semibold mb-1.5">Full Name as per ERP <em className="not-italic text-klred">*</em></span>
