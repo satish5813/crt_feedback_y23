@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 170" role="img" aria-label="KL">
+  <!-- K stem -->
+  <polygon points="14,12 52,12 52,158 14,158" fill="#c8102e"/>
+  <polygon points="33,12 52,12 52,158 33,158" fill="#a50e26"/>
+  <!-- K upper arm -->
+  <polygon points="52,92 118,12 162,12 84,106" fill="#c8102e"/>
+  <polygon points="118,12 140,12 74,94 63,92" fill="#e12945"/>
+  <!-- K lower leg -->
+  <polygon points="84,106 162,158 118,158 52,112" fill="#a50e26"/>
+  <polygon points="84,106 120,130 100,140 66,112" fill="#c8102e"/>
+  <!-- L stem -->
+  <polygon points="182,12 220,12 220,158 182,158" fill="#c8102e"/>
+  <polygon points="201,12 220,12 220,158 201,158" fill="#e12945"/>
+  <!-- L base -->
+  <polygon points="182,120 286,120 286,158 182,158" fill="#a50e26"/>
+  <polygon points="182,140 286,140 286,158 182,158" fill="#c8102e"/>
+  <!-- white slash accent (as in the original mark) -->
+  <polygon points="238,12 258,12 208,158 196,146" fill="#ffffff" opacity="0.9"/>
+  <polygon points="258,12 286,12 286,40 226,120 214,110" fill="#c8102e"/>
+</svg>
